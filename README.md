@@ -48,11 +48,15 @@ Este componente es el contenedor principal de la aplicación. Contiene los compo
 1. Clona el repositorio.
 2. Instala las dependencias con el siguiente comando:
 
-```npm install
+```
+npm install
+
 ```
 3. Ejecuta la aplicación con el siguiente comando:
 
-```npm run dev
+```
+npm run dev
+
 ```
 
 

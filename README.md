@@ -50,13 +50,11 @@ Este componente es el contenedor principal de la aplicación. Contiene los compo
 
 ```
 npm install
-
 ```
 3. Ejecuta la aplicación con el siguiente comando:
 
 ```
 npm run dev
-
 ```
 
 

@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export const CompraForm = ({ agregarCompra, compra, editMode }) => {
-  const [nombre, setNombre] = useState('');
-  const [precio, setPrecio] = useState('');
+  const [nombre, setNombre] = useState(localStorage.getItem('nombre') || '');
+  const [precio, setPrecio] = useState(localStorage.getItem('precio') || '');
   const [compraId, setCompraId] = useState('')
 
   useEffect(() => {
@@ -14,6 +14,11 @@ export const CompraForm = ({ agregarCompra, compra, editMode }) => {
       setCompraId(compra.id)
     }
   }, [editMode]);
+
+  useEffect(()=>{
+    localStorage.setItem('nombre', nombre);
+    localStorage.setItem('precio', precio);
+  },[nombre, precio])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +37,8 @@ export const CompraForm = ({ agregarCompra, compra, editMode }) => {
 
     setNombre('');
     setPrecio('');
+    localStorage.removeItem('nombre')
+    localStorage.removeItem('precio')
   };
 
   return (

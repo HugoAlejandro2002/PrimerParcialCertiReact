@@ -30,7 +30,6 @@ export const Compras = ({ compras, setCompras, showModal, setShowModal }) => {
     const comprasActualizadas = compras.map((compra) =>
       compra.id === compraActualizada.id ? compraActualizada : compra
     );
-    console.log(comprasActualizadas)
     setCompras(comprasActualizadas);
     setEditItem(null);
     setEditMode(false);

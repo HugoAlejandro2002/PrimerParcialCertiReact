@@ -7,13 +7,13 @@ import { FaPlus } from 'react-icons/fa';
 
 export const Compras = ({ compras, setCompras, showModal, setShowModal }) => {
   const [editMode, setEditMode] = useState(false);
-  const [editItem, setEditItem] = useState(null); // Agrega esta línea
+  const [editItem, setEditItem] = useState(null);
 
   const agregarCompra = (compra) => {
     if (editMode) {
       actualizarCompra(compra);
     } else {
-      setCompras([...compras, compra]);
+      setCompras([...compras, compra ]);
     }
     setEditItem(null);
     setEditMode(false);
@@ -26,13 +26,15 @@ export const Compras = ({ compras, setCompras, showModal, setShowModal }) => {
   };
 
   const actualizarCompra = (compraActualizada) => {
+    console.log(compraActualizada)
     const comprasActualizadas = compras.map((compra) =>
       compra.id === compraActualizada.id ? compraActualizada : compra
     );
+    console.log(comprasActualizadas)
     setCompras(comprasActualizadas);
     setEditItem(null);
     setEditMode(false);
-    setShowModal(false)
+    setShowModal(false);
   };
 
   const eliminarCompra = (compra) => {
@@ -41,8 +43,8 @@ export const Compras = ({ compras, setCompras, showModal, setShowModal }) => {
   };
 
   return (
-    <>
-      <div>Compras</div>
+    <div className='flex flex-col w-1/2 h-screen'> 
+      <h2 className="text-2xl font-medium mb-4" >Compras</h2>
       <div className="absolute right-3 bottom-3 w-10 h-10">
         <IconButton icon={FaPlus} onClick={() => setShowModal(true)} />
       </div>
@@ -55,16 +57,16 @@ export const Compras = ({ compras, setCompras, showModal, setShowModal }) => {
           />
         </Modal>
       )}
-      <div className="w-1/2 h-screen overflow-y-auto">
-        {compras.map((compra, index) => (
+      <div className=" overflow-y-auto">
+        {compras.map((compra) => (
           <CompraCard
-            key={index}
+            key={compra.id}
             compra={compra}
             onEditar={editarCompra}
             onEliminar={eliminarCompra}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };

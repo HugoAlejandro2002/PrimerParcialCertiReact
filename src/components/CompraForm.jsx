@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const CompraForm = ({ agregarCompra, compra, editMode }) => {
-  const [nombre, setNombre] = useState(localStorage.getItem('nombre') || '');
-  const [precio, setPrecio] = useState(localStorage.getItem('precio') || '');
+  const [nombre, setNombre] = useState('');
+  const [precio, setPrecio] = useState('');
+  const [compraId, setCompraId] = useState('')
 
   useEffect(() => {
-    if (editMode && compra) {
+    if (editMode ) {
       setNombre(compra.nombre);
       setPrecio(compra.precio.toString());
+      setCompraId(compra.id)
     }
-  }, [editMode, compra]);
-
-  useEffect(() => {
-    console.log('cambio en el form');
-
-    // Guardar los datos del formulario en el localStorage
-    localStorage.setItem('nombre', nombre);
-    localStorage.setItem('precio', precio);
-  }, [nombre, precio]);
+  }, [editMode]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +23,7 @@ export const CompraForm = ({ agregarCompra, compra, editMode }) => {
     }
 
     const nuevaCompra = {
+      id:editMode ? compraId : uuidv4(),
       nombre,
       precio: parseFloat(precio),
     };
@@ -67,7 +64,7 @@ export const CompraForm = ({ agregarCompra, compra, editMode }) => {
         type="submit"
         className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600"
       >
-        Agregar compra
+        {editMode ? 'Actualizar compra' : 'Agregar compra'}
       </button>
     </form>
   );

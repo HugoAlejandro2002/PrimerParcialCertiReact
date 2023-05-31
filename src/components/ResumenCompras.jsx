@@ -16,7 +16,7 @@ export const ResumenCompras = ({ compras }) => {
 
 
   return (
-    <div className="w-1/2 h-screen p-4">
+    <div className="w-full md:w-1/2 md:h-screen p-4 ">
       <h2 className="text-2xl font-medium mb-4">Resumen de Compras</h2>
       <p className="mb-2">Total gastado: ${totalGastado}</p>
       <p>Cantidad de items comprados: {cantidadItems}</p>

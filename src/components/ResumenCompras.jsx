@@ -10,6 +10,8 @@ export const ResumenCompras = ({ compras }) => {
     const cantidadItems = compras.length;
     setTotalGastado(totalGastado)
     setCantidadItems(cantidadItems)
+    const arrayCompras = JSON.stringify(compras);
+    localStorage.setItem('comprasArray', arrayCompras);
   }, [compras])
 
 

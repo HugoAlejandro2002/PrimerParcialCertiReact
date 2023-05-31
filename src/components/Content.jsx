@@ -4,13 +4,16 @@ import { ResumenCompras } from './ResumenCompras';
 
 
 export const Content = () => {
-    const [compras, setCompras] = useState([]);
+    const comprasArrayString = localStorage.getItem('comprasArray');
+    const comprasArray = JSON.parse(comprasArrayString);
+    
+    const [compras, setCompras] = useState(localStorage.getItem('comprasArray')? comprasArray : []);
     const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="flex flex-row">
-            <Compras compras={compras} setCompras={setCompras} setShowModal={setShowModal} showModal={showModal}/>
-            <ResumenCompras compras={compras}  />
+            <Compras compras={compras} setCompras={setCompras} setShowModal={setShowModal} showModal={showModal} />
+            <ResumenCompras compras={compras} />
         </div>
     )
 }
